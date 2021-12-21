@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopee.bank.newom.adapter.dao.SysSeqLogDao">
+    <resultMap id="BaseResultMap" type="com.shopee.bank.newom.adapter.bean.SysSeqLog">
+        <result column="serial_number" jdbcType="VARCHAR" property="serialNumber"/>
+        <result column="request_date_time" jdbcType="VARCHAR" property="requestDateTime"/>
+        <result column="request_message" jdbcType="LONGVARBINARY" property="requestMessage"/>
+        <result column="response_message" jdbcType="LONGVARBINARY" property="responseMessage"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="error_code" jdbcType="VARCHAR" property="errorCode"/>
+        <result column="error_msg" jdbcType="VARCHAR" property="errorMsg"/>
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
+        <result column="modify_time" jdbcType="VARCHAR" property="modifyTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        serial_number,request_date_time,request_message,response_message,status,error_code,error_msg,create_time,modify_time
+    </sql>
+
+    <select id="getBySerialNumber" resultType="com.shopee.bank.newom.adapter.bean.SysSeqLog"
+            parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_seq_log
+        where serial_number = #{serialNumber,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.shopee.bank.newom.adapter.bean.SysSeqLog">
+        insert into sys_seq_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="serialNumber != null">
+                serial_number,
+            </if>
+            <if test="requestDateTime != null">
+                request_date_time,
+            </if>
+            <if test="requestMessage != null">
+                request_message,
+            </if>
+            <if test="responseMessage != null">
+                response_message,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="errorCode != null">
+                error_code,
+            </if>
+            <if test="errorMsg != null">
+                error_msg,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="serialNumber != null">
+                #{serialNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="requestDateTime != null">
+                #{requestDateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="requestMessage != null">
+                #{requestMessage,jdbcType=VARCHAR},
+            </if>
+            <if test="responseMessage != null">
+                #{responseMessage,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="errorCode != null">
+                #{errorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="errorMsg != null">
+                #{errorMsg,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.shopee.bank.newom.adapter.bean.SysSeqLog">
+        update sys_seq_log
+        <set>
+            <if test="seqNo != null">
+                seq_no = #{seqNo,jdbcType=VARCHAR},
+            </if>
+            <if test="requestDateTime != null">
+                request_date_time = #{requestDateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="requestMessage != null">
+                request_message = #{requestMessage,jdbcType=VARCHAR},
+            </if>
+            <if test="responseMessage != null">
+                response_message = #{responseMessage,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="errorCode != null">
+                error_code = #{errorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="enumValue != null">
+                error_msg = #{enumValue,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where table_name=#{tableName,jdbcType=VARCHAR} and column_name=#{columnName,jdbcType=VARCHAR}
+    </update>
+</mapper>

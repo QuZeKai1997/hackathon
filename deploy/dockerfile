@@ -1,0 +1,12 @@
+FROM harbor.shopeemobile.com/banking/centos7-java-base:v6.0
+ARG APP_NAME
+ARG ENVIRONMENT
+ARG SKY_IP
+WORKDIR /${APP_NAME}/
+COPY . .
+RUN cd /${APP_NAME}/scripts && /bin/bash build.sh
+
+RUN mv /${APP_NAME}/target/*.jar /${APP_NAME}/  \
+    && sed -i "s/ENV/${ENVIRONMENT}/g;s/SRVNAME/${APP_NAME}/g;s/SKYIP/${SKY_IP}/g" scripts/start.sh 
+
+CMD ["sh", "-c", "cd scripts && sh start.sh"]

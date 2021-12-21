@@ -1,0 +1,30 @@
+#!groovy
+
+@Library('shared-library-tp@develop')_
+
+def GROUP='shopee'
+def PROJECT_NAME='app-bke'
+def kubeConfigId='kubeconfig-general-sg2-test'
+def CANARY_REPLICAS='2'
+def REGISTRY_CRED='harbor-airpay-dev'
+def SVR_NAME='newom'
+def APP_NAME='newom'
+def REGION='id'
+def PORT='15000'
+def SKY_IP='10.129.99.65:11800'
+
+
+node('slave') {
+    def projInfo = [
+        group           : GROUP,
+        projectName     : PROJECT_NAME,
+        kubeConfig      : kubeConfigId,
+        registryCred    : REGISTRY_CRED,
+        svrName         : SVR_NAME,
+        appName         : APP_NAME,
+        region          : REGION,
+        port            : PORT,
+        skyIp           : SKY_IP,
+    ]
+    be.startDeploy(projInfo)
+}
