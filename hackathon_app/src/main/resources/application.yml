@@ -1,6 +1,5 @@
 server:
   port: 8888
-
 spring:
   datasource:
     name: test
@@ -11,7 +10,6 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.shopee.bank.newom.app.bean
-
 logging:
   level:
     com.shopee.bank.newom.app.dao: debug
