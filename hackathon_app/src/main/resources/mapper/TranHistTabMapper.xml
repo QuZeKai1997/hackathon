@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopee.bank.newom.app.dao.TranHistTabMapper">
+
+    <resultMap id="TranHistTabResultMap" type="com.shopee.bank.newom.app.bean.TranHistTab">
+        <id column="id" jdbcType="BIGINT" property="id"></id>
+        <result column="account_id" jdbcType="VARCHAR" property="accountId"></result>
+        <result column="other_account_id" jdbcType="VARCHAR" property="otherAccountId"></result>
+        <result column="tran_direction" jdbcType="VARCHAR" property="tranDirection"></result>
+        <result column="tran_amount" jdbcType="BIGINT" property="tranAmount"></result>
+        <result column="prev_balance" jdbcType="BIGINT" property="prevBalance"></result>
+        <result column="seq_no" jdbcType="VARCHAR" property="seqNo"></result>
+        <result column="initial_seq_no" jdbcType="VARCHAR" property="initialSeqNo"></result>
+        <result column="tran_date" jdbcType="CHAR" property="tranDate"></result>
+        <result column="extra_info" jdbcType="VARCHAR" property="extraInfo"></result>
+        <result column="row_version" jdbcType="BIGINT" property="rowVersion"></result>
+        <result column="create_time" jdbcType="BIGINT" property="createTime"></result>
+        <result column="update_time" jdbcType="BIGINT" property="updateTime"></result>
+    </resultMap>
+
+    <sql id="columns">
+        id,account_id,other_account_id,tran_direction,tran_amount,prev_balance,seq_no
+        initial_seq_no,tran_date,extra_info,row_version,create_time,update_time
+    </sql>
+    <select id="findbyid" parameterType="java.lang.String" resultMap="TranHistTabResultMap">
+        select
+        <include refid="columns"></include>
+        from tran_hist_tab where account_id = #{accountId,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.shopee.bank.newom.app.bean.TranHistTab">
+        insert into tran_hist_tab
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="accountId != null">
+                account_id,
+            </if>
+            <if test="otherAccountId != null">
+                other_account_id,
+            </if>
+            <if test="tranDirection != null">
+                tran_direction,
+            </if>
+            <if test="tranAmount != null">
+                tran_amount,
+            </if>
+            <if test="prevBalance != null">
+                prev_balance,
+            </if>
+            <if test="seqNo != null">
+                seq_no,
+            </if>
+            <if test="initialSeqNo != null">
+                initial_seq_no,
+            </if>
+            <if test="tranDate != null">
+                tran_date,
+            </if>
+            <if test="extraInfo != null">
+                extra_info,
+            </if>
+            <if test="rowVersion != null">
+                row_version,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="accountId != null">
+                #{accountId,jdbcType=VARCHAR},
+            </if>
+            <if test="otherAccountId != null">
+                #{otherAccountId,jdbcType=VARCHAR},
+            </if>
+            <if test="tranDirection != null">
+                #{tranDirection,jdbcType=VARCHAR},
+            </if>
+            <if test="tranAmount != null">
+                #{tranAmount,jdbcType=BIGINT},
+            </if>
+            <if test="prevBalance != null">
+                #{prevBalance,jdbcType=BIGINT},
+            </if>
+            <if test="seqNo != null">
+                #{seqNo,jdbcType=VARCHAR},
+            </if>
+            <if test="initialSeqNo != null">
+                #{initialSeqNo,jdbcType=VARCHAR},
+            </if>
+            <if test="tranDate != null">
+                #{tranDate,jdbcType=VARCHAR},
+            </if>
+            <if test="extraInfo != null">
+                #{extraInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="rowVersion != null">
+                #{rowVersion,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+</mapper>

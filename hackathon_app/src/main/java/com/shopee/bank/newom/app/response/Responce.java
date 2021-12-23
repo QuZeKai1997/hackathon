@@ -14,4 +14,18 @@ public class Responce<T> implements Serializable {
     private int code;
     private String msg;
     private T data;
+
+    public Responce(){
+
+    }
+    public Responce(int code, String msg, Object data) {
+        this.msg = msg;
+        this.code = code;
+        this.data = (T)data;
+    }
+
+
+    public static Responce success(){
+        return new Responce(SUCCESS_CODE,SUCCESS_MEG,null);
+    }
 }
